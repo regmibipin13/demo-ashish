@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AshishController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [AshishController::class, 'index'])->name('home');
+Route::get('/about', [AshishController::class, 'about'])->name('about');
+Route::get('/contact', [AshishController::class, 'contact'])->name('contact');
+Route::get('/form', [AshishController::class, 'formSubmit'])->name('form.submit');
+Route::get('/products/{id', [AshishController::class, 'product'])->name('products');

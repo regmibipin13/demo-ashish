@@ -1,32 +1,34 @@
 @extends('layout')
 @section('content')
-    @if ($errors->any())
-        {{ $errors->first() }}
-    @endif
-    <form action="{{ route('form.submit') }}" method="GET">
-        <input type="text" placeholder="Name" name="name">
-        <input type="email" placeholder="Email" name="email">
-        <input type="password" placeholder="Password" name="password">
-        <button type="submit">Submit</button>
-    </form>
+    <div class="form p-5">
+        <form action="{{ route('form.submit') }}" method="POST">
+            @csrf
+            <input type="text" name="name" placeholder="Name"><br /><br />
+            <input type="text" name="email" placeholder="Email"><br /><br />
+            <input type="text" name="password" placeholder="Password"><br /><br />
+            <button type="submit">Save</button>
+        </form>
+    </div>
 
 
-
-    @php
-        $products = [
-            1 => 'Shoe',
-            2 => 'Brush',
-            3 => 'Paper',
-        ];
-    @endphp
-
-    <div class="products">
-        <ul>
-            @foreach ($products as $key => $value)
-                <li>
-                    <a href="{{ route('products', $key) }}">{{ $value }}</a>
-                </li>
+    <div class="table" style="margin-top: 100px; margin-bottom:100px;">
+        <table border="1" width="100%">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th></th>
+            </tr>
+            @foreach ($data as $ck)
+                <tr>
+                    <td>{{ $ck->id }}</td>
+                    <td>{{ $ck->name }}</td>
+                    <td>{{ $ck->email }}</td>
+                    <td>{{ $ck->password }}</td>
+                    <td></td>
+                </tr>
             @endforeach
-        </ul>
+        </table>
     </div>
 @endsection

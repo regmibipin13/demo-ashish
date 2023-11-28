@@ -17,5 +17,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [AshishController::class, 'index'])->name('home');
 Route::get('/about', [AshishController::class, 'about'])->name('about');
 Route::get('/contact', [AshishController::class, 'contact'])->name('contact');
-Route::get('/form', [AshishController::class, 'formSubmit'])->name('form.submit');
+Route::post('/form', [AshishController::class, 'formSubmit'])->name('form.submit');
 Route::get('/products/{id', [AshishController::class, 'product'])->name('products');

@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ck;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AshishController extends Controller
 {
     public function index()
     {
-        return view('pages.home');
+        $data = Ck::all();
+        return view('pages.home', [
+            'data' => $data,
+        ]);
     }
 
     public function about()
@@ -22,12 +27,13 @@ class AshishController extends Controller
 
     public function formSubmit(Request $request)
     {
-        $data = [];
-        $data[] = $request->all(); // 3
+        $data = $request->all();
 
-        return view('pages.table', [
-            'data' => $data,
-        ]);
+        $data['password'] = Hash::make($data['password']);
+
+        Ck::create($data);
+
+        return redirect()->route('home');
     }
 
 
